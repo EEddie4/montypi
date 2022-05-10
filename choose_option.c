@@ -2,47 +2,61 @@
 
 
 /**
- * add_dnodeint_end - Add a new node at the end of a list
+ * m_push - function that pusher an element to the stack
  *
- * @head: pointer to Head of the list
- * @n: number to add in node
+ * @stack: address of double linked list
+ * @line_number: number of line
  *
- * Return: the address of the new element, or NULL if it failed
  */
 
 void m_push(stack_t **stack, unsigned int line_number)
 {
 	stack_t *new_node = NULL;
 	stack_t *tmp = *stack;
-	cmds *cm = head;
 
 	new_node = malloc(sizeof(stack_t));
-	/*if (new_node == NULL)
-		return (NULL);*/
+	if (!new_node)
+	{
+		dprintf(STDERR_FILENO, "Error: malloc failed\n");
+		exit(EXIT_FAILURE);
+	}
 
-	new_node->n = atoi(cm->cmd[1]);
+	new_node->n = atoi(head->cmd[1]);
+	if (!(new_node->n) && ((*(head->cmd[1]) != '0') ||
+			       (strlen(head->cmd[1]) != 1)))
+	{
+		dprintf(STDERR_FILENO, "L%d: usage: push integer\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+
 	new_node->next = NULL;
 
-	if (*stack == NULL)
+	if (!(*stack))
 	{
-		new_node->prev = *stack;	
+		new_node->prev = *stack;
 		*stack = new_node;
 		return;
 	}
 
-	while (tmp->next != NULL)
-	{
+	while (tmp->next)
 		tmp = tmp->next;
-	}
+
 	tmp->next = new_node;
 	new_node->prev = tmp;
-
-	return;
 }
+
+/**
+ * m_pall - Function that print all values on the stack
+ * starting from the top of the stack
+ *
+ * @stack: address of double linked list
+ * @line_number: number of line
+ *
+ */
 
 void m_pall(stack_t **stack, unsigned int line_number)
 {
-	stack_t *tmp = *stack; 
+	stack_t *tmp = *stack;
 
 	if (tmp == NULL)
 		return;
@@ -52,41 +66,19 @@ void m_pall(stack_t **stack, unsigned int line_number)
 		tmp = tmp->next;
 	}
 
-	while (tmp->prev != NULL)
+	while (tmp)
 	{
 		printf("%d\n", tmp->n);
 		tmp = tmp->prev;
 	}
-	printf("%d\n", tmp->n);
 }
 
-
-void m_pint(stack_t **stack, unsigned int line_number)
-{
-
-}
-
-
-void m_pop(stack_t **stack, unsigned int line_number)
-{
-
-}
-
-
-void m_swap(stack_t **stack, unsigned int line_number)
-{
-
-}
-
-void m_add(stack_t **stack, unsigned int line_number)
-{
-
-}
-
-void m_nop(stack_t **stack, unsigned int line_number)
-{
-
-}
+/**
+ * execute_ops - Function to execute options
+ *
+ * @stack: address of double linked list
+ *
+ */
 
 void execute_ops(stack_t **stack)
 {
@@ -111,5 +103,4 @@ void execute_ops(stack_t **stack)
 		}
 		i++;
 	}
-	
-}	
+}
