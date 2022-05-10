@@ -1,5 +1,6 @@
 #include "monty.h"
 
+cmds *head = NULL;
 /**
  * main - entry point, evaluates path name.
  * @argc: number of arguments.
@@ -10,8 +11,10 @@ int main(int argc, char **argv)
 {
 	FILE *f;
 	char *s = NULL;
-	size_t n, r, i;
-	cmds *head = NULL;
+	size_t n, i;
+	int r;
+	cmds *tmp = NULL;
+	stack_t *stk = NULL;
 
 	if (argc != 2)
 	{
@@ -33,6 +36,9 @@ int main(int argc, char **argv)
 			exit(EXIT_FAILURE);
 		}
 	}
+	tmp = head;
+	for (; head; head = head->next)
+		execute_ops(&stk);
 	free(s);
 	fclose(f);
 	return (EXIT_SUCCESS);
