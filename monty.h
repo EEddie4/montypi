@@ -32,7 +32,7 @@ typedef struct stack_s
 
 typedef struct commands
 {
-	int line_number;
+	unsigned int line_number;
 	char *cmd[2];
 	struct commands *next;
 } cmds;
@@ -52,6 +52,19 @@ typedef struct instruction_s
 	void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+extern cmds *head;
 cmds *command_builder(cmds **head, char *s, int i);
+void m_push(stack_t **stack, unsigned int line_number);
+void m_pall(stack_t **stack, unsigned int line_number);
+void m_pint(stack_t **stack, unsigned int line_number);
+void m_pop(stack_t **stack, unsigned int line_number);
+void m_swap(stack_t **stack, unsigned int line_number);
+void m_add(stack_t **stack, unsigned int line_number);
+void m_nop(stack_t **stack, unsigned int line_number);
+void execute_ops(stack_t **stack);
+
+
+
+
 
 #endif /*MONTY_H*/
