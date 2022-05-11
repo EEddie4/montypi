@@ -10,6 +10,17 @@
 
 void m_pint(stack_t **stack, unsigned int line_number)
 {
+	stack_t *tmp = *stack;
+	
+	if (!tmp)
+	{
+		dprintf(STDERR_FILENO, "L%d: can't pint, stack empty\n", line_number);
+		freell(stack);
+		exit(EXIT_FAILURE);
+	}
+	for (; tmp->next; tmp = tmp->next)
+		;
+	printf("%d\n", tmp->n);
 
 }
 
@@ -23,7 +34,25 @@ void m_pint(stack_t **stack, unsigned int line_number)
 
 void m_pop(stack_t **stack, unsigned int line_number)
 {
-
+	stack_t *tmp = *stack, *tmp2 = NULL;
+	
+	if (!tmp)
+	{
+		dprintf(STDERR_FILENO, "L%d: can't pop an empty stack\n", line_number);
+		freell(stack);
+		exit(EXIT_FAILURE);
+	}
+	if (!(*stack)->next)
+	{
+		free(*stack);
+		*stack = NULL;
+		return;
+	}
+	for (; tmp && tmp->next; tmp = tmp->next)
+		;
+	tmp2 = tmp;
+	tmp->prev->next = NULL;
+	free(tmp2);
 }
 
 /**
@@ -36,7 +65,30 @@ void m_pop(stack_t **stack, unsigned int line_number)
 
 void m_swap(stack_t **stack, unsigned int line_number)
 {
-
+	stack_t *tmp = *stack;
+	size_t i = 1;
+	for (;tmp && tmp->next; tmp = tmp->next, i++)
+		;
+	if (i < 2)
+	{
+		dprintf(STDERR_FILENO, "L%d: can't swap, stack too short\n", line_number);
+		freell(stack);
+		exit(EXIT_FAILURE);
+	}
+	if (i == 2)
+	{
+		(*stack)->prev = tmp;
+		tmp->next = (*stack);
+		(*stack)->next = NULL;
+		*stack = tmp;
+		(*stack)->prev = NULL;
+		return;
+	}
+	tmp->prev = tmp->prev->prev;
+	tmp->prev->next->next = NULL;
+	tmp->next = tmp->prev->next;
+	tmp->prev->next->prev = tmp;
+	tmp->prev->next = tmp;
 }
 
 /**
@@ -49,7 +101,18 @@ void m_swap(stack_t **stack, unsigned int line_number)
 
 void m_add(stack_t **stack, unsigned int line_number)
 {
-
+	stack_t *tmp = *stack;
+	size_t i = 1;
+	for (; tmp && tmp->next; tmp = tmp->next, i++)
+		;
+	if (i < 2)
+	{
+		dprintf(STDERR_FILENO, "L%d: can't add, stack too short\n", line_number);
+		freell(stack);
+		exit(EXIT_FAILURE);
+	}
+	tmp->prev->n += tmp->n;
+	m_pop(stack, line_number);
 }
 
 /**
@@ -62,6 +125,6 @@ void m_add(stack_t **stack, unsigned int line_number)
 
 void m_nop(stack_t **stack, unsigned int line_number)
 {
-
+	return;
 }
 
