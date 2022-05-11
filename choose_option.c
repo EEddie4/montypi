@@ -123,8 +123,6 @@ void freell(stack_t **stack)
 
 	for (; *stack; *stack = (*stack)->next, free(tmp))
 		tmp = *stack;
-	for (;head->prev; head = head->prev)
-		;
 	for (; head; head = head->next, free(tmp2))
 	{
 		tmp2 = head;
