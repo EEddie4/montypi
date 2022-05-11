@@ -60,15 +60,12 @@ void m_push(stack_t **stack, unsigned int line_number)
 void m_pall(stack_t **stack, unsigned int line_number)
 {
 	stack_t *tmp = *stack;
+	(void)line_number;
 
 	if (tmp == NULL)
 		return;
-
 	while (tmp->next != NULL)
-	{
 		tmp = tmp->next;
-	}
-
 	while (tmp)
 	{
 		printf("%d\n", tmp->n);
@@ -99,6 +96,8 @@ void execute_ops(stack_t **stack)
 		{"div", m_div},
 		{"mul", m_mul},
 		{"mod", m_mod},
+		{"pchar", m_pchar},
+		{"pstr", m_pstr},
 		{NULL, NULL}
 	};
 
