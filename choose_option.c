@@ -90,12 +90,16 @@ void execute_ops(stack_t **stack)
 	instruction_t options[] = {
 		{"push", m_push},
 		{"pall", m_pall},
-		{"pint", m_pint},
+		{"pint", mega_pint},
 		{"pop", m_pop},
 		{"swap", m_swap},
 		{"add", m_add},
 		{"nop", m_nop},
-		{NULL, NULL},
+		{"sub", m_sub},
+		{"div", m_div},
+		{"mul", m_mul},
+		{"mod", m_mod},
+		{NULL, NULL}
 	};
 
 	while (options[i].opcode)
@@ -109,12 +113,20 @@ void execute_ops(stack_t **stack)
 	}
 	if (!options[i].opcode)
 	{
-		dprintf(STDERR_FILENO, "L%d: unknown instruction <opcode>\n", head->line_number);
+		dprintf(STDERR_FILENO, "L%d: unknown instruction <opcode>\n",
+				head->line_number);
 		freell(stack);
 		_exit(EXIT_FAILURE);
 	}
 
 }
+
+/**
+ * freell - Function free all linked list
+ *
+ * @stack: address of double linked list
+ *
+ */
 
 void freell(stack_t **stack)
 {
