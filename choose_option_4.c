@@ -13,12 +13,15 @@ void m_pstr(stack_t **stack, unsigned int line_number)
 	(void)line_number;
 
 	if (!tmp)
+	{
 		printf("\n");
+		return;
+	}
 	for (; tmp->next; tmp = tmp->next)
 		;
 	for (; tmp && tmp->n; tmp = tmp->prev, i++)
 	{
-		if (tmp->n <= 0 || tmp->n > 126)
+			if (tmp->n <= 0 || tmp->n > 126)
 			break;
 		str[i] = tmp->n;
 	}
