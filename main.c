@@ -13,8 +13,8 @@ int main(int argc, char **argv)
 	char *s = NULL;
 	size_t n, i;
 	int r;
-	cmds *tmp = NULL;
 	stack_t *stk = NULL;
+	cmds *tmp;
 
 	if (argc != 2)
 	{
@@ -33,13 +33,16 @@ int main(int argc, char **argv)
 		if (!command_builder(&head, s, i))
 		{
 			dprintf(STDERR_FILENO, "Error: malloc failed\n");
+			freell(&stk);
 			exit(EXIT_FAILURE);
 		}
 	}
+	free(s);
+	fclose(f);
 	tmp = head;
 	for (; head; head = head->next)
 		execute_ops(&stk);
-	free(s);
-	fclose(f);
+	head = tmp;
+	freell(&stk);
 	return (EXIT_SUCCESS);
 }
