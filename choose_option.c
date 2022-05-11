@@ -18,6 +18,7 @@ void m_push(stack_t **stack, unsigned int line_number)
 	if (!new_node)
 	{
 		dprintf(STDERR_FILENO, "Error: malloc failed\n");
+		freell(stack);
 		exit(EXIT_FAILURE);
 	}
 
@@ -26,6 +27,8 @@ void m_push(stack_t **stack, unsigned int line_number)
 			       (strlen(head->cmd[1]) != 1)))
 	{
 		dprintf(STDERR_FILENO, "L%d: usage: push integer\n", line_number);
+		freell(stack);
+		free(new_node);
 		exit(EXIT_FAILURE);
 	}
 
@@ -100,7 +103,32 @@ void execute_ops(stack_t **stack)
 		if (!strcmp(options[i].opcode, head->cmd[0]))
 		{
 			(*options[i].f)(stack, head->line_number);
+			break;
 		}
 		i++;
+	}
+	if (!options[i].opcode)
+	{
+		dprintf(STDERR_FILENO, "L%d: unknown instruction <opcode>\n", head->line_number);
+		freell(stack);
+		_exit(EXIT_FAILURE);
+	}
+
+}
+
+void freell(stack_t **stack)
+{
+	stack_t *tmp = NULL;
+	cmds *tmp2 = NULL;
+
+	for (; *stack; *stack = (*stack)->next, free(tmp))
+		tmp = *stack;
+	for (;head->prev; head = head->prev)
+		;
+	for (; head; head = head->next, free(tmp2))
+	{
+		tmp2 = head;
+		free(head->cmd[1]);
+		free(head->cmd[0]);
 	}
 }
