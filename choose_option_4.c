@@ -39,7 +39,7 @@ int isint(char *s)
 		return (1);
 	for (i = 0; s[i]; i++)
 	{
-		if (s[i] < 48 || s[i] > 57)
+		if ((s[i] < 48 || s[i] > 57) && (s[i] != '-') )
 			return (1);
 	}
 	return (0);
