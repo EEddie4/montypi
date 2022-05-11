@@ -46,3 +46,22 @@ cmds *command_builder(cmds **head, char *s, int i)
 	tmp->next = new;
 	return (new);
 }
+
+/**
+ * m_com - Function that find # in the line.
+ * @s: line to read
+ *
+ * Return: 1 if find # and 0 if not find.
+ */
+int m_com(char *s)
+{
+	int i;
+
+	for (i = 0; s[i]; i++)
+	{
+		if (s[i] == '#')
+			return (1);
+	}
+	return (0);
+}
+
