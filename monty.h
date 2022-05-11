@@ -70,8 +70,6 @@ void m_mod(stack_t **stack, unsigned int line_number);
 void m_pchar(stack_t **stack, unsigned int line_number);
 void m_pstr(stack_t **stack, unsigned int line_number);
 int m_com(char *s);
-
-
-
+int isint(char *s);
 
 #endif /*MONTY_H*/
