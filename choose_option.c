@@ -107,8 +107,8 @@ void execute_ops(stack_t **stack)
 	}
 	if (!options[i].opcode)
 	{
-		dprintf(STDERR_FILENO, "L%d: unknown instruction <opcode>\n",
-				head->line_number);
+		dprintf(STDERR_FILENO, "L%d: unknown instruction %s\n",
+				head->line_number, head->cmd[0]);
 		freell(stack);
 		exit(EXIT_FAILURE);
 	}
