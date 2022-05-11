@@ -134,7 +134,7 @@ void m_pchar(stack_t **stack, unsigned int line_number)
 	}
 	for (; tmp->next; tmp = tmp->next)
 		;
-	if (tmp->n < 0 || tmp->n > 128)
+	if (tmp->n < 0 || tmp->n > 126)
 	{
 		dprintf(STDERR_FILENO, "L%d: can't pchar, value out of range\n",
 				line_number);
