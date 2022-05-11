@@ -30,6 +30,8 @@ int main(int argc, char **argv)
 	for (i = 1; (r = getline(&s, &n, f)) != EOF; i++)
 	{
 		s[r - 1] = '\0';
+		if (m_com(s))
+			continue;
 		if (!command_builder(&head, s, i))
 		{
 			dprintf(STDERR_FILENO, "Error: malloc failed\n");
@@ -39,14 +41,11 @@ int main(int argc, char **argv)
 	}
 	free(s);
 	fclose(f);
-	while (head)
+	for (; head; free(tmp2->cmd[1]), free(tmp2->cmd[0]), free(tmp2))
 	{
 		tmp2 = head;
 		execute_ops(&stk);
 		head = head->next;
-		free(tmp2->cmd[1]);
-		free(tmp2->cmd[0]);
-		free(tmp2);
 	}
 	freell(&stk);
 	return (EXIT_SUCCESS);
