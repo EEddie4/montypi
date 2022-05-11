@@ -56,13 +56,14 @@ extern cmds *head;
 cmds *command_builder(cmds **head, char *s, int i);
 void m_push(stack_t **stack, unsigned int line_number);
 void m_pall(stack_t **stack, unsigned int line_number);
-void m_pint(stack_t **stack, unsigned int line_number);
+void mega_pint(stack_t **stack, unsigned int line_number);
 void m_pop(stack_t **stack, unsigned int line_number);
 void m_swap(stack_t **stack, unsigned int line_number);
 void m_add(stack_t **stack, unsigned int line_number);
 void m_nop(stack_t **stack, unsigned int line_number);
 void execute_ops(stack_t **stack);
 void freell(stack_t **stack);
+void m_sub(stack_t **stack, unsigned int line_number);
 
 
 
