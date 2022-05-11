@@ -18,7 +18,7 @@ void m_pstr(stack_t **stack, unsigned int line_number)
 		;
 	for (; tmp && tmp->n; tmp = tmp->prev, i++)
 	{
-		if (tmp->n < 0 || tmp->n > 126)
+		if (tmp->n <= 0 || tmp->n > 126)
 			break;
 		str[i] = tmp->n;
 	}
