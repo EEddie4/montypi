@@ -25,3 +25,22 @@ void m_pstr(stack_t **stack, unsigned int line_number)
 	str[i] = '\0';
 	printf("%s\n", str);
 }
+
+/**
+ * isint - checks if s could be converted to an decimal int
+ * @s: sourcer string
+ * Return: 0 on success, otherwise 1
+ */
+int isint(char *s)
+{
+	size_t i;
+
+	if (!s)
+		return (1);
+	for (i = 0; s[i]; i++)
+	{
+		if (s[i] < 48 || s[i] > 57)
+			return (1);
+	}
+	return (0);
+}

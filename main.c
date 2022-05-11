@@ -30,7 +30,7 @@ int main(int argc, char **argv)
 	for (i = 1; (r = getline(&s, &n, f)) != EOF; i++)
 	{
 		s[r - 1] = '\0';
-		if (m_com(s))
+		if (m_com(s) || !*s)
 			continue;
 		if (!command_builder(&head, s, i))
 		{

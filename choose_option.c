@@ -22,28 +22,23 @@ void m_push(stack_t **stack, unsigned int line_number)
 		exit(EXIT_FAILURE);
 	}
 
-	new_node->n = atoi(head->cmd[1]);
-	if (!(new_node->n) && ((*(head->cmd[1]) != '0') ||
-			       (strlen(head->cmd[1]) != 1)))
+	if (isint(head->cmd[1]))
 	{
 		dprintf(STDERR_FILENO, "L%d: usage: push integer\n", line_number);
 		freell(stack);
 		free(new_node);
 		exit(EXIT_FAILURE);
 	}
-
+	new_node->n = atoi(head->cmd[1]);
 	new_node->next = NULL;
-
 	if (!(*stack))
 	{
 		new_node->prev = *stack;
 		*stack = new_node;
 		return;
 	}
-
 	while (tmp->next)
 		tmp = tmp->next;
-
 	tmp->next = new_node;
 	new_node->prev = tmp;
 }
