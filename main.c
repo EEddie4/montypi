@@ -46,7 +46,7 @@ int main(int argc, char **argv)
 	for (i = 1; (r = getline(&s, &n, f)) != EOF; i++)
 	{
 		s[r - 1] = '\0';
-		if (!check_blank(s) || m_com(s) || !(*s))
+		if (!check_blank(s) || m_com(&s) || !(*s))
 			continue;
 		if (!command_builder(&head, s, i))
 		{
@@ -55,8 +55,7 @@ int main(int argc, char **argv)
 			exit(EXIT_FAILURE);
 		}
 	}
-	free(s);
-	fclose(f);
+	free(s), fclose(f);
 	for (; head; free(tmp2->cmd[1]), free(tmp2->cmd[0]), free(tmp2))
 	{
 		tmp2 = head;

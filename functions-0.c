@@ -53,15 +53,17 @@ cmds *command_builder(cmds **head, char *s, int i)
  *
  * Return: 1 if find # and 0 if not find.
  */
-int m_com(char *s)
+int m_com(char **s)
 {
-	int i;
+	int i = 0;
 
-	for (i = 0; s[i]; i++)
-	{
-		if (s[i] == '#')
-			return (1);
-	}
+	for (; (*s)[i] && ((*s)[i] == ' ' || (*s)[i] == '\t'); i++)
+		;
+	if ((*s)[i] == '#')
+		return (1);
+	for (i = 0; (*s)[i] && (*s)[i] != '#'; i++)
+		;
+	(*s)[i] = '\0';
 	return (0);
 }
 
