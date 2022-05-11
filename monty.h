@@ -35,6 +35,7 @@ typedef struct commands
 	unsigned int line_number;
 	char *cmd[2];
 	struct commands *next;
+	struct commands *prev;
 } cmds;
 
 /**
@@ -62,7 +63,7 @@ void m_swap(stack_t **stack, unsigned int line_number);
 void m_add(stack_t **stack, unsigned int line_number);
 void m_nop(stack_t **stack, unsigned int line_number);
 void execute_ops(stack_t **stack);
-
+void freell(stack_t **stack);
 
 
 
