@@ -110,7 +110,7 @@ void execute_ops(stack_t **stack)
 		dprintf(STDERR_FILENO, "L%d: unknown instruction <opcode>\n",
 				head->line_number);
 		freell(stack);
-		_exit(EXIT_FAILURE);
+		exit(EXIT_FAILURE);
 	}
 
 }
