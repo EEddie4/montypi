@@ -67,3 +67,23 @@ void m_rotl(stack_t **stack, unsigned int line_number)
 	(*stack)->prev = tmp;
 	*stack = tmp;
 }
+/**
+ * m_rotr - rotates the stack to the bottom
+ * @stack: address of doubly linked list
+ * @line_number: line number
+ */
+void m_rotr(stack_t **stack, unsigned int line_number)
+{
+	stack_t *tmp = *stack;
+	(void)line_number;
+
+	if (!(*stack) || !((*stack)->next))
+		return;
+	for (; tmp->next; tmp = tmp->next)
+		;
+	tmp->next = *stack;
+	(*stack)->prev = tmp;
+	(*stack)->next->prev = NULL;
+	*stack = (*stack)->next;
+	tmp->next->next = NULL;
+}

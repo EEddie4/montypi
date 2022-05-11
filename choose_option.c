@@ -93,6 +93,7 @@ void execute_ops(stack_t **stack)
 		{"pchar", m_pchar},
 		{"pstr", m_pstr},
 		{"rotl", m_rotl},
+		{"rotr", m_rotr},
 		{NULL, NULL}
 	};
 
