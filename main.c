@@ -1,11 +1,11 @@
 #include "monty.h"
 
 cmds *head = NULL;
+
 /**
- * main - entry point, evaluates path name.
- * @argc: number of arguments.
- * @argv: array of arguments.
- * Return: EXIT_SUCCESS, EXIT_FAILURE.
+ * check_blank - checks for blank spaces
+ * @s: source string
+ * Return: 0 if successful, 1 otherwise
  */
 int check_blank(char *s)
 {
@@ -17,6 +17,12 @@ int check_blank(char *s)
 		return (0);
 	return (1);
 }
+/**
+ * main - entry point, evaluates path name.
+ * @argc: number of arguments.
+ * @argv: array of arguments.
+ * Return: EXIT_SUCCESS, EXIT_FAILURE.
+ */
 int main(int argc, char **argv)
 {
 	FILE *f;
@@ -41,10 +47,7 @@ int main(int argc, char **argv)
 	{
 		s[r - 1] = '\0';
 		if (!check_blank(s) || m_com(s) || !(*s))
-		{
-			printf("ok\n");
 			continue;
-		}
 		if (!command_builder(&head, s, i))
 		{
 			dprintf(STDERR_FILENO, "Error: malloc failed\n");
