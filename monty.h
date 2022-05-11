@@ -35,7 +35,6 @@ typedef struct commands
 	unsigned int line_number;
 	char *cmd[2];
 	struct commands *next;
-	struct commands *prev;
 } cmds;
 
 /**
