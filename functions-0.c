@@ -38,13 +38,11 @@ cmds *command_builder(cmds **head, char *s, int i)
 	new->next = NULL;
 	if (!(*head))
 	{
-		new->prev = NULL;
 		*head = new;
 		return (new);
 	}
 	for (; tmp->next; tmp = tmp->next)
 		continue;
 	tmp->next = new;
-	new->prev = tmp;
 	return (new);
 }
