@@ -14,7 +14,7 @@ int main(int argc, char **argv)
 	size_t n, i;
 	int r;
 	stack_t *stk = NULL;
-	cmds *tmp;
+	cmds *tmp2;
 
 	if (argc != 2)
 	{
@@ -39,10 +39,15 @@ int main(int argc, char **argv)
 	}
 	free(s);
 	fclose(f);
-	tmp = head;
-	for (; head; head = head->next)
+	while (head)
+	{
+		tmp2 = head;
 		execute_ops(&stk);
-	head = tmp;
+		head = head->next;
+		free(tmp2->cmd[1]);
+		free(tmp2->cmd[0]);
+		free(tmp2);
+	}
 	freell(&stk);
 	return (EXIT_SUCCESS);
 }
