@@ -42,7 +42,7 @@ void m_div(stack_t **stack, unsigned int line_number)
 		;
 	if (i < 2)
 	{
-		dprintf(STDERR_FILENO, "L%d: can't sub, stack too short\n", line_number);
+		dprintf(STDERR_FILENO, "L%d: can't div, stack too short\n", line_number);
 		freell(stack);
 		exit(EXIT_FAILURE);
 	}
