@@ -15,13 +15,13 @@ cmds *command_builder(cmds **head, char *s, int i)
 	new = malloc(sizeof(cmds));
 	if (!new)
 		return (NULL);
-	new->cmd[0] = strdup(strtok(s, " "));
+	new->cmd[0] = strdup(strtok(s, " \t"));
 	if (!(new->cmd[0]))
 	{
 		free(new);
 		return (NULL);
 	}
-	str = strtok(NULL, " ");
+	str = strtok(NULL, " \t");
 	if (str)
 	{
 		new->cmd[1] = strdup(str);

@@ -9,9 +9,9 @@ cmds *head = NULL;
  */
 int check_blank(char *s)
 {
-	size_t i;
+	size_t i = 0;
 
-	for (i = 0; s[i] && s[i] == ' '; i++)
+	for (; s[i] && (s[i] == ' ' || s[i] == '\t'); i++)
 		;
 	if (s[i] == '\0')
 		return (0);
