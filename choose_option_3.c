@@ -56,3 +56,30 @@ void m_div(stack_t **stack, unsigned int line_number)
 	tmp->prev->n /= tmp->n;
 	m_pop(stack, line_number);
 }
+
+/**
+ * m_mul - Function that multiplies multiplies the second top element
+ * of the stack with the top element of the stack
+ *
+ * @stack: address of double linked list
+ * @line_number: number of line
+ *
+ */
+
+void m_mul(stack_t **stack, unsigned int line_number)
+{
+	stack_t *tmp = *stack;
+	size_t i = 1;
+
+	for (; tmp && tmp->next; tmp = tmp->next, i++)
+		;
+	if (i < 2)
+	{
+		dprintf(STDERR_FILENO, "L%d: can't mul, stack too short\n", line_number);
+		freell(stack);
+		exit(EXIT_FAILURE);
+	}
+
+	tmp->prev->n *= tmp->n;
+	m_pop(stack, line_number);
+}
