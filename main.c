@@ -7,6 +7,16 @@ cmds *head = NULL;
  * @argv: array of arguments.
  * Return: EXIT_SUCCESS, EXIT_FAILURE.
  */
+int check_blank(char *s)
+{
+	size_t i;
+
+	for (i = 0; s[i] && s[i] == ' '; i++)
+		;
+	if (s[i] == '\0')
+		return (0);
+	return (1);
+}
 int main(int argc, char **argv)
 {
 	FILE *f;
@@ -30,8 +40,11 @@ int main(int argc, char **argv)
 	for (i = 1; (r = getline(&s, &n, f)) != EOF; i++)
 	{
 		s[r - 1] = '\0';
-		if (m_com(s) || !*s)
+		if (!check_blank(s) || m_com(s) || !(*s))
+		{
+			printf("ok\n");
 			continue;
+		}
 		if (!command_builder(&head, s, i))
 		{
 			dprintf(STDERR_FILENO, "Error: malloc failed\n");
