@@ -17,13 +17,20 @@ cmds *command_builder(cmds **head, char *s, int i)
 		return (NULL);
 	new->cmd[0] = strdup(strtok(s, " "));
 	if (!(new->cmd[0]))
+	{
+		free(new);
 		return (NULL);
+	}
 	str = strtok(NULL, " ");
 	if (str)
 	{
 		new->cmd[1] = strdup(str);
 		if (!(new->cmd[1]))
+		{
+			free(new->cmd[1]);
+			free(new);
 			return (NULL);
+		}
 	}
 	else
 		new->cmd[1] = NULL;
@@ -31,11 +38,13 @@ cmds *command_builder(cmds **head, char *s, int i)
 	new->next = NULL;
 	if (!(*head))
 	{
+		new->prev = NULL;
 		*head = new;
 		return (new);
 	}
 	for (; tmp->next; tmp = tmp->next)
 		continue;
 	tmp->next = new;
+	new->prev = tmp;
 	return (new);
 }
