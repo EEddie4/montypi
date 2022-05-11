@@ -117,3 +117,29 @@ void m_mod(stack_t **stack, unsigned int line_number)
 	tmp->prev->n %= tmp->n;
 	m_pop(stack, line_number);
 }
+/**
+ * m_pchar - prints the char at the top of the stack + '\n'
+ * @stack: address of doubly linked list
+ * @line_number: line number
+ */
+void m_pchar(stack_t **stack, unsigned int line_number)
+{
+	stack_t *tmp = *stack;
+
+	if (!tmp)
+	{
+		dprintf(STDERR_FILENO, "L%d: can't pchar, stack empty\n", line_number);
+		freell(stack);
+		exit(EXIT_FAILURE);
+	}
+	for (; tmp->next; tmp = tmp->next)
+		;
+	if (tmp->n < 0 || tmp->n > 128)
+	{
+		dprintf(STDERR_FILENO, "L%d: can't pchar, value out of range\n",
+				line_number);
+		freell(stack);
+		exit(EXIT_FAILURE);
+	}
+	printf("%c\n", tmp->n);
+}
