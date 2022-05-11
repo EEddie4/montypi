@@ -21,7 +21,7 @@ void m_pstr(stack_t **stack, unsigned int line_number)
 		;
 	for (; tmp && tmp->n; tmp = tmp->prev, i++)
 	{
-			if (tmp->n <= 0 || tmp->n > 126)
+		if (tmp->n <= 0 || tmp->n > 126)
 			break;
 		str[i] = tmp->n;
 	}
@@ -46,4 +46,24 @@ int isint(char *s)
 			return (1);
 	}
 	return (0);
+}
+/**
+ * m_rotl - rotates the stack to the top
+ * @stack: address of doubly linked list
+ * @line_number: line number
+ */
+void m_rotl(stack_t **stack, unsigned int line_number)
+{
+	stack_t *tmp = *stack;
+	(void)line_number;
+
+	if (!(*stack) || !((*stack)->next))
+		return;
+	for (; tmp->next; tmp = tmp->next)
+		;
+	tmp->prev->next = NULL;
+	tmp->prev = NULL;
+	tmp->next = *stack;
+	(*stack)->prev = tmp;
+	*stack = tmp;
 }

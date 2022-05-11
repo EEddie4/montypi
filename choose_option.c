@@ -78,7 +78,6 @@ void m_pall(stack_t **stack, unsigned int line_number)
 void execute_ops(stack_t **stack)
 {
 	int i = 0;
-
 	instruction_t options[] = {
 		{"push", m_push},
 		{"pall", m_pall},
@@ -93,6 +92,7 @@ void execute_ops(stack_t **stack)
 		{"mod", m_mod},
 		{"pchar", m_pchar},
 		{"pstr", m_pstr},
+		{"rotl", m_rotl},
 		{NULL, NULL}
 	};
 
@@ -112,7 +112,6 @@ void execute_ops(stack_t **stack)
 		freell(stack);
 		exit(EXIT_FAILURE);
 	}
-
 }
 
 /**
