@@ -157,8 +157,8 @@ julien@ubuntu:~/monty$
 | ------------- | ------------------------------ |
 | [main.c](https://github.com/luismch158158/monty/blob/master/main.c "main.c")      | Main function and check_blank function, |
 | [monty.h](https://github.com/luismch158158/monty/blob/master/monty.h "monty.h")      | Header of function prototypes.       |
-| [functions-0.c](https://github.com/luismch158158/monty/blob/master/choose_option.c "functions-0.c")      | Functions like: command_builder and m_com (comments)|
-| [choose_option.c](https://github.com/luismch158158/monty/blob/master/main.c "main.c")      | Functions like: m_push, m_pall, execute_ops and freell.       |
+| [functions-0.c](https://github.com/luismch158158/monty/blob/master/functions-0.c "functions-0.c")      | Functions like: command_builder and m_com (comments)|
+| [choose_option.c](https://github.com/luismch158158/monty/blob/master/choose_option.c "main.c")      | Functions like: m_push, m_pall, execute_ops and freell.       |
 | [choose_option_2.c](https://github.com/luismch158158/monty/blob/master/choose_option_2.c "choose_option_2.c")      | Functions like: mega_pint, m_pop, m_swap, m_add, m_nop.|
 | [choose_option_3.c](https://github.com/luismch158158/monty/blob/master/choose_option_3.c "choose_option_3.c")      | Functions like: m_sub, m_div, m_mul, m_mod, m_pchar.|
 | [choose_option_4.c](https://github.com/luismch158158/monty/blob/master/choose_option_4.c "choose_option_4.c")      | Functions like: m_pstr, isint, m_rotl, m_rotr, m_queue|
