@@ -127,3 +127,25 @@ julien@ubuntu:~/monty$
     - an error occured
 - If you can’t malloc anymore, print the error message `Error: malloc failed`, followed by a new line, and exit with status `EXIT_FAILURE`.
 - You have to use `malloc` and `free` and are not allowed to use any other function from `man malloc` (realloc, calloc, …)
+
+## Opcodes
+---
+| Opcode | Description                    |
+| ------------- | ------------------------------ |
+| `push`      | The opcode push pushes an element to the stack.       |
+| `pall`   | The opcode pall prints all the values on the stack, starting from the top of the stack.     |
+| `pint`      | The opcode pint prints the value at the top of the stack, followed by a new line.       |
+| `pop`   | The opcode pop removes the top element of the stack.    |
+| `swap`      | The opcode swap swaps the top two elements of the stack.       |
+| `add`   | The opcode add adds the top two elements of the stack.     |
+| `nop`      | The opcode nop doesn’t do anything.       |
+| `sub`   | The opcode sub subtracts the top element of the stack from the second top element of the stack.     |
+| `div`      | The opcode div divides the second top element of the stack by the top element of the stack.       |
+| `mul`   | The opcode mul multiplies the second top element of the stack with the top element of the stack.     |
+| `mod`      | The opcode mod computes the rest of the division of the second top element of the stack by the top element of the stack.       |
+| `pchar`   | The opcode pchar prints the char at the top of the stack, followed by a new line.     |
+| `pstr`      | The opcode pstr prints the string starting at the top of the stack, followed by a new line.       |
+| `rotl`   | The opcode rotl rotates the stack to the top.     |
+| `rotr`      | The opcode rotr rotates the stack to the bottom.       |
+| `stack`   | The opcode stack sets the format of the data to a stack (LIFO). This is the default behavior of the program.     |
+| `queue`   | The opcode queue sets the format of the data to a queue (FIFO).     |
