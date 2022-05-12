@@ -87,3 +87,21 @@ void m_rotr(stack_t **stack, unsigned int line_number)
 	*stack = (*stack)->next;
 	tmp->next->next = NULL;
 }
+/**
+ * m_queue - changes structure to queue mode
+ * @stack: address of doubly linked list
+ * @line_number: line number
+ */
+void m_queue(stack_t **stack, unsigned int line_number)
+{
+	cmds *tmp = head;
+	(void)stack;
+	(void)line_number;
+
+	if (!tmp->mode)
+	{
+		for (; tmp; tmp = tmp->next)
+			tmp->mode = 1;
+	}
+}
+

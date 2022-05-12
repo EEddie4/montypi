@@ -11,9 +11,13 @@
 
 void m_push(stack_t **stack, unsigned int line_number)
 {
-	stack_t *new_node = NULL;
-	stack_t *tmp = *stack;
+	stack_t *new_node = NULL, *tmp = *stack;
 
+	if (head->mode)
+	{
+		m_pushq(stack, line_number);
+		return;
+	}
 	new_node = malloc(sizeof(stack_t));
 	if (!new_node)
 	{
@@ -94,6 +98,8 @@ void execute_ops(stack_t **stack)
 		{"pstr", m_pstr},
 		{"rotl", m_rotl},
 		{"rotr", m_rotr},
+		{"stack", m_stack},
+		{"queue", m_queue},
 		{NULL, NULL}
 	};
 

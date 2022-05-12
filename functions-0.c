@@ -36,6 +36,7 @@ cmds *command_builder(cmds **head, char *s, int i)
 		new->cmd[1] = NULL;
 	new->line_number = i;
 	new->next = NULL;
+	new->mode = 0;
 	if (!(*head))
 	{
 		*head = new;

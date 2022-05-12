@@ -32,6 +32,7 @@ typedef struct stack_s
 
 typedef struct commands
 {
+	short mode;
 	unsigned int line_number;
 	char *cmd[2];
 	struct commands *next;
@@ -71,6 +72,9 @@ void m_pchar(stack_t **stack, unsigned int line_number);
 void m_pstr(stack_t **stack, unsigned int line_number);
 void m_rotl(stack_t **stack, unsigned int line_number);
 void m_rotr(stack_t **stack, unsigned int line_number);
+void m_stack(stack_t **stack, unsigned int line_number);
+void m_queue(stack_t **stack, unsigned int line_number);
+void m_pushq(stack_t **stack, unsigned int line_number);
 int m_com(char **s);
 int isint(char *s);
 
