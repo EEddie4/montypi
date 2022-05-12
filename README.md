@@ -164,3 +164,17 @@ julien@ubuntu:~/monty$
 | [choose_option_4.c](https://github.com/luismch158158/monty/blob/master/choose_option_4.c "choose_option_4.c")      | Functions like: m_pstr, isint, m_rotl, m_rotr, m_queue|
 | [choose_option_5.c](https://github.com/luismch158158/monty/blob/master/choose_option_5.c "choose_option_5.c")      | Functions like: m_stack, m_pushq|
 
+# 🧠​ Brainf*ck script
+Brainfuck is an esoteric programming language created in 1993 by Urban Müller.
+
+Notable for its extreme minimalism, the language consists of only eight simple commands, a data pointer and an instruction pointer. While it is fully Turing complete, it is not intended for practical use, but to challenge and amuse programmers. 
+
+Brainf*ck simply requires one to break commands into microscopic steps.
+
+The language's name is a reference to the slang term brainfuck, which refers to things so complicated or unusual that they exceed the limits of one's understanding.
+
+You can install the bf interpreter to test your code: sudo apt-get install bf
+
+This script is in bf folder.
+
+
